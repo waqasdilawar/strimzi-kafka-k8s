@@ -22,6 +22,8 @@
 
 `kubectl apply -f kafka/01-strimzi-kafka-with-metrics.yaml`
 
+Quick start example could also be found here at [Strimzi website](https://strimzi.io/quickstarts/).
+
 # 03-  deploy PodMonitor to scrap kafka metrics into Prometheus
 **release: my-prometheus** it should be [RELEASE_NAME] of the release name from **#01**
 
