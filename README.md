@@ -1,11 +1,30 @@
-# 01- TODO deploy kafka using
+# 01-  deploy Prometheus Community Operator
 
-kubectl apply -f metrics/strimzi-kafka-metrics.yaml
+**Prerequisites**
+* Kubernetes 1.16+
+* Helm 3+
 
-# 02- TODO port forward Kafka Exporter
+`helm repo add prometheus-community https://prometheus-community.github.io/helm-charts`
 
-kubectl port-forward my-cluster-kafka-exporter-848748f6c5-ffjq6 9404:9404
+`helm repo add stable https://charts.helm.sh/stable`
 
-# 03- Kafka Exporter metrics will be available at
+`helm repo update`
 
-curl http://localhost:9404/metrics|grep kafka_
+**[Install Chart](https://artifacthub.io/packages/helm/prometheus-worawutchan/prometheus#install-chart)**
+# Helm
+
+`helm install [RELEASE_NAME] prometheus-community/prometheus`
+
+
+# 02-  deploy Strimzi kafka with metrics
+
+`kubectl create -f 'https://strimzi.io/install/latest?namespace=default'`
+
+`kubectl apply -f kafka/01-strimzi-kafka-with-metrics.yaml`
+
+# 03-  deploy PodMonitor to scrap kafka metrics into Prometheus
+**release: my-prometheus** it should be [RELEASE_NAME] of the release name from **#01**
+
+`kubectl apply -f kafka/02-prometheus-strimzi-podmonitor.yaml`
+
+# 04-  Add Grafana different dashboards from configuration available at [Strimzi repository](https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/metrics/grafana-dashboards)
