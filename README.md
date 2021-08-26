@@ -1,4 +1,4 @@
-# 01-  deploy Prometheus Community Operator
+# 01-  deploy [Prometheus Community Operator](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack)
 
 **Prerequisites**
 * Kubernetes 1.16+
@@ -10,11 +10,17 @@
 
 `helm repo update`
 
-**[Install Chart](https://artifacthub.io/packages/helm/prometheus-worawutchan/prometheus#install-chart)**
+**[Install Chart](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack#install-chart)**
 # Helm
 
-`helm install [RELEASE_NAME] prometheus-community/prometheus`
+`helm install [RELEASE_NAME] prometheus-community/kube-prometheus-stack`
 
+
+**Grafana admin password change**
+
+`kubectl exec -it my-prometheus-grafana-66894cd656-pnq7f -c grafana -- sh`
+
+`grafana-cli admin reset-admin-password new_passwd`
 
 # 02-  deploy Strimzi kafka with metrics
 
